@@ -1,36 +1,25 @@
-const express = require("express");
-const app = express();
+var express = require('express');
+var path=require('path');
+var app = express();
 
-//Requst processing
+//server configuration
+app.use(express.static(path.join(__dirname,'public')));
 
-app.get("/", (req, res) => {
-    res.send("<h1>Welcome to Hospital Management System</h1>"+
-                   "<hr/>"+
-                   "<ol>"+
-                    "<li> PGDAC</li>"+
-                    "<li> PGDBDA</li>");
+app.get('/', function (req, res) {
+    res.sendFile(path.join(___dirname + '/index.html'));
+ });
+
+
+app.get('/hello', function (req, res) {
+    var person={firstName:'Mayuri',lastName:'Yerme',age:23};
+    res.send(person);
 });
 
-app.get("/about", (req, res) => {
-    res.send("<h1>Transflower Learning Pvt. ltd.</h1>");
+var server = app.listen(8888, function () {
+    var host = server.address().address
+    var port = server.address().port
+    console.log("Example app listening at http://localhost:8888", host, port)
+    
 });
 
-app.get("/contact", (req, res) => {
-    res.send("<p>Contact Number:9881735801</p>"
-            +"<p>Email:ravi.tambade</p>" );
-});
-
-app.get("/flowers",(req, res)=>{
-    var products=[
-    {"id":12,"title":"Gerbera","description":"Wedding flower","unitprice":5,"quantity":6000},
-    {"id":13,"title":"Rose","description":"Valntine flower","unitprice":15,"quantity":4000},
-    {"id":14,"title":"Lotus","description":"Worship flower","unitprice":25,"quantity":16000},
-    {"id":15,"title":"Jasmine","description":"Smelling  flower","unitprice":2,"quantity":6650},
- 
-    ];
-    res.send(products);
-
-})
-app.listen(3000, () => {
-    console.log("Listen on the port 3000...");
-});
+  
